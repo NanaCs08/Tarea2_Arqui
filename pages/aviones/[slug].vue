@@ -19,7 +19,7 @@
 <script setup>
 import Header from '@/components/header.vue';
 import Footer from '@/components/footer.vue';
-import Comments from '@/components/Comments.vue';
+import Comments from '@/components/Comments.vue'
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 

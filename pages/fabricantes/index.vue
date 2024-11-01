@@ -9,27 +9,29 @@
         </li>
       </ul>
     </div>
+    <Comments /> <!-- Agregar la sección de comentarios -->
     <Footer />
   </div>
 </template>
 
 <script setup>
-import Header from '@/components/header.vue';
-import Footer from '@/components/footer.vue';
-import { ref, onMounted } from 'vue';
+import Header from '@/components/header.vue'
+import Footer from '@/components/footer.vue'
+import Comments from '@/components/Comments.vue' // Importar Comments
+import { ref, onMounted } from 'vue'
 
-const fabricantes = ref([]);
+const fabricantes = ref([])
 
 const importFabricantes = async () => {
-  const modules = import.meta.glob('@/data/fabricantes/*.json');
-  const fabricantePromises = Object.values(modules).map((module) => module());
-  const fabricanteData = await Promise.all(fabricantePromises);
-  fabricantes.value = fabricanteData.flat();
-};
+  const modules = import.meta.glob('@/data/fabricantes/*.json')
+  const fabricantePromises = Object.values(modules).map((module) => module())
+  const fabricanteData = await Promise.all(fabricantePromises)
+  fabricantes.value = fabricanteData.flat()
+}
 
 onMounted(() => {
-  importFabricantes();
-});
+  importFabricantes()
+})
 </script>
 
 <style scoped>

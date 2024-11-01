@@ -9,23 +9,25 @@
         </li>
       </ul>
     </div>
+    <Comments /> <!-- Agregar la sección de comentarios -->
     <Footer />
   </div>
 </template>
 
 <script setup>
-import Header from '@/components/header.vue';
-import Footer from '@/components/footer.vue';
-import { ref, onMounted } from 'vue';
+import Header from '@/components/header.vue'
+import Footer from '@/components/footer.vue'
+import Comments from '@/components/Comments.vue' // Importar Comments
+import { ref, onMounted } from 'vue'
 
-const aviones = ref([]);
+const aviones = ref([])
 
 const importAviones = async () => {
-  const modules = import.meta.glob('@/data/aviones/*.json');
-  const avionPromises = Object.values(modules).map((module) => module());
-  const avionData = await Promise.all(avionPromises);
-  aviones.value = avionData.map(data => data.default || data);
-};
+  const modules = import.meta.glob('@/data/aviones/*.json')
+  const avionPromises = Object.values(modules).map((module) => module())
+  const avionData = await Promise.all(avionPromises)
+  aviones.value = avionData.map(data => data.default || data)
+}
 
 const generateSlug = (text) => {
   return text
@@ -35,12 +37,12 @@ const generateSlug = (text) => {
     .replace(/[^\w\-]+/g, '')       // Elimina caracteres no válidos
     .replace(/\-\-+/g, '-')         // Reemplaza múltiples - con uno solo
     .replace(/^-+/, '')             // Elimina - al inicio
-    .replace(/-+$/, '');            // Elimina - al final
-};
+    .replace(/-+$/, '')             // Elimina - al final
+}
 
 onMounted(() => {
-  importAviones();
-});
+  importAviones()
+})
 </script>
 
 <style scoped>
